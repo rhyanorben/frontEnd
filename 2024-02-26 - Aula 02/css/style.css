@@ -10,5 +10,9 @@ h2 {
 
 #id1 {
     text-align: center;
-    color: red;
+    color: rgb(202, 13, 13);
+}
+
+.paragrafo {
+    size: 15px;
 }
