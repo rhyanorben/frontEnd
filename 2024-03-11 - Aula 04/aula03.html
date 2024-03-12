@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula Formulários</title>
+    <style>
+        div {
+            margin-bottom: 10px;
+        }
+        /* Por padrão, o formulário coloca o input ao lado da label, bloqueando o display dessa maneira, joga o input para baixo: */
+        label{
+            display: block;
+        }
+
+        .radio label,
+        .radio input {
+            display: inline-block ;
+        }
+    </style>
+</head>
+
+<body>
+    
+    <div>
+
+        <h2>Formulários</h2>
+
+        <form action="" method="get">
+            
+            <div>
+                <label for="nome">Nome:</label>
+                <input name="nome" type="text" value="Rhyan">
+            </div>
+            
+            <div>
+                <label for="sobrenome">Sobrenome:</label>
+                <input name="sobrenome" type="text" placeholder="Informe seu sobrenome..." required>
+            </div>
+            
+            <div>
+                <label for="cidade">Cidade:</label>
+                <input name="cidade" type="text" placeholder="Informe sua cidade...">
+            </div>
+
+            <div>
+                <label for="cpf">CPF:</label>
+                <input name="cpf" type="text" value="000.000.000-00" disabled>
+            </div>
+            
+            <div>
+                <label for="email">E-mail:</label>
+                <input name="email" type="email" placeholder="Informe seu e-mail...">
+            </div>
+            
+            <div>
+                <label for="idade">Idade:</label>
+                <input name="idade" type="number" value="0" min="0">
+            </div>
+            
+            <div>
+                <label for="dataNascimento">Data de Nascimento:</label>
+                <input name="dataNascimento" type="date">
+            </div>
+
+            <div>
+                <label for="senha">Senha:</label>
+                <input name="senha" type="password" placeholder="Informe sua senha...">
+            </div>
+
+            <div>                
+                <label for="sexo">Sexo:</label>
+            </div>
+
+            <div class="radio">
+                <input name="sexo[]" type="radio">
+                <label for="masculino">Masculino</label>
+            </div>
+
+            <div class="radio">
+                <input name="sexo[]" type="radio">
+                <label for="feminino">Feminino</label>
+            </div>
+
+            <div>
+                <input type="reset" value="Limpar">
+                <input type="submit" value="Enviar">
+            </div>
+
+            <div>
+                <label for="disciplinas">Disciplinas do semestre:</label>
+            </div>
+
+            <div class="radio">
+                <input name="disciplinas[]" type="checkbox">
+                <label for="frontEnd">Front End</label>                
+            </div>
+
+            <div class="radio">
+                <input name="disciplinas[]" type="checkbox">
+                <label for="bancoDadosII">Banco de Dados II</label>                
+            </div>
+
+            <div class="radio">
+                <input name="disciplinas[]" type="checkbox">
+                <label for="calculoII">calculoII</label>                
+            </div>
+
+            <div>
+                <label style="margin-bottom: 10px;">Selecione um arquivo:</label>
+                <input type="file">
+            </div>
+
+            <div>
+                <label for="arquivos" style="margin-bottom: 10px;">Selecione um ou mais arquivos:</label>
+                <input type="file" name="arquivos" multiple>
+            </div>
+
+            <div>
+                <label>Selecione um produto:</label>
+            </div>
+
+            <div>
+                <select>
+                    <option value="produto1">Carne</option>
+                    <option value="produto2">Ovos</option>
+                    <option value="produto3">Azeite</option>
+                    <option value="produto4">Queijo</option>
+                    <option value="produto5">Manteiga</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Selecione um ou mais produtos:</label>
+            </div>
+
+            <div>
+                <select multiple>
+                    <option value="produto1">Carne</option>
+                    <option value="produto2">Ovos</option>
+                    <option value="produto3">Azeite</option>
+                    <option value="produto4">Queijo</option>
+                    <option value="produto5">Manteiga</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Deixe seu comentário:</label>
+                <textarea></textarea>
+            </div>
+
+            <div>
+                <fieldset>
+                    <legend>Informe seu nome:</legend>
+                    <label for="nome">Nome:</label>
+                    <input type="text" name="nome">
+                    <label for="sobrenome">sobrenome:</label>
+                    <input type="text" name="sobrenome">
+                </fieldset>
+            </div>
+
+            <div>
+                <label>Informe sua cidade:</label>
+                <input type="text" list="cidades">
+            </div>
+
+            <div>
+                <datalist id="cidades">
+                    <option value="Criciúma">Santa Catarina</option>                    
+                    <option value="Içara">Santa Catarina</option>                    
+                    <option value="Araranguá">Santa Catarina</option>                    
+                </datalist>
+            </div>
+
+        </form>
+
+    </div>
+
+</body>
+
+</html>
