@@ -1,0 +1,121 @@
+.elementos {
+    width: 200px;
+    height: 200px;
+    border: 1px solid black;
+}
+
+.elemento-filho {
+    width: 200px;
+    height: 200px;
+    border: 1px solid black;
+    margin-top: 20px;
+}
+
+.elemento-pai {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.posicionamento{
+    width: 500px;
+    height: 500px;
+    border: 1px solid red;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.posicionada{
+    width: 200px;
+    height: 200px;
+    border: 1px solid blue;
+}
+
+.fixa{
+    width: 200px;
+    height: 200px;
+    border: 1px solid black;
+}
+
+.flex-grow {
+    display: flex;
+    margin-top: 20px;
+}
+
+.grow-1 {
+    width: auto;
+    flex-grow: 2;
+}
+
+.grow-2 {
+    width: auto;
+    flex-grow: 3;
+}
+
+.flex-basis {
+    display: flex;
+    margin-top: 20px;
+}
+
+.basis{
+    flex-basis: 200px;
+    height: 200px;
+    border: 1px solid black;
+
+}
+
+.maior{
+    flex-grow: 3;
+}
+
+.menor{
+    flex-grow: 2;
+}
+
+.flex-shrink {
+    display: flex;
+    margin-top: 20px;
+}
+
+.shrink {
+    flex: 200px;
+    height: 200px;
+    border: 1px solid black;
+}
+
+.diferente {
+    flex-shrink: 2;
+}
+
+h3{
+    color: red;
+    text-align: center;
+}
+
+h4{
+    color: red;
+    text-align: center;
+}
+
+@media screen and (max-width: 300px) {
+    h3{
+        color: blue;
+        text-align: left;
+    }
+}
+
+@media screen and (min-width: 400px) {
+    h4{
+        color: blue;
+        text-align: left;
+    }
+}
+
+@media screen and (orientation: landscape) {
+    .elementos{
+        display: inline-block;
+    }
+}
+
