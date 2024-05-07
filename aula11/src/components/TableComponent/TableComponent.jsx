@@ -5,6 +5,7 @@ export default function TableComponent({products, onEdit, onDelete}) {
 
     return(
         <div>
+            <h2>Tabela de Produtos</h2>
             <table>
                 <thead>
                     <th>ID</th>
@@ -14,7 +15,6 @@ export default function TableComponent({products, onEdit, onDelete}) {
                     <th>Ações</th>
                 </thead>
                 <tbody>
-                    <h2>Tabela de Produtos</h2>
                     {products.map(product => (
                         <tr key={product.id}>
                             <td>{product.id}</td>

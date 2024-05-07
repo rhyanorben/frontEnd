@@ -1,64 +1,93 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import TableComponent from '../TableComponent/TableComponent'
 import './FormComponent.css'
 
-export default function FormComponent(){
+export default async function FormComponent(){
 
     const [products, setProducts] = useState([])
-    const [id, setId] = useState(1)
+    const [id, setId] = useState("")
     const [name, setName] = useState("")
     const [preco, setPreco] = useState(null)
     const [estoque, setEstoque] = useState(null)
     const [edit, setEdit] = useState(false) 
+
+    const url = "http://localhost:3000/products";
+
+    const clearForm = () => {
+        setName = ("");
+        setPreco = ("");
+        setEstoque = ("");
+    }
+
+    useEffect(() => { const getProductsList = async() => {
+        const res = await fetch(url);
+        const data = await res.json();
+        setProducts(data);
+    }
+
+        getProductsList();
+    }, []);
       
-    const saveForm = (e) => {
-    e.preventDefault()
-
-    if (!edit) {
-        setId(id => id+1)
-        setProducts([...products, {id, name, preco, estoque}])
-        const newProduct = {
-            id: id,
-            name: name,
-            preco: preco,
-            estoque: estoque 
-        };
-        setProducts([...products, newProduct]);
-    }
-
-    if (edit) {
-        const product = products.findIndex(prod => prod.id===id)
-        products[product] = {
-            id,
-            name,
-            preco,
-            estoque
-        }  
-        setProducts(products)
-        setEdit(false)
-    }
-    setName("");
-    setPreco("");
-    setEstoque("");
-    }
-
     
-
-    const handleEdit = (id) => {
-        const product = products.find(prod => prod.id===id)
-        setId(product.id)
-        setName(product.name)
-        setPreco(product.preco)
-        setEstoque(product.estoque)
+    const getProductById = async(id) => {
+        const res = await fetch(url + `?id${id}`);
+        const data = await res.json();
+        
+        setName(data[0].name)
+        setPreco(data[0].preco)
+        setEstoque(data[0].estoque)
+        setId(data[0].id)
+        
         setEdit(true)
     }
 
-    const handleDelete = (id) => {
-        setProducts(currentProducts => currentProducts.filter(prod => prod.id !== id))
+    const saveForm = async (e) => {
+    e.preventDefault();
+    const saveRequestParams = {
+        method: edit ? "PUT" : "POST",
+        headers: {
+            "content-type": "application/json"
+        },
+        body: JSON.stringify({ name, price, estoque })
     }
 
+    const save_url = edit ? url + `./${id}` : url;
 
+    const res = await fetch(save_url, saveRequestParams); 
 
+    
+    if (!edit) {
+        const newProduct = await res.json();
+        setProducts((prevProducts) => [...prevProducts, newProduct]);
+    }
+    
+    if (edit) {
+        const editedProduct = await res.json();
+        const editedProductIndex = products.findIndex(prod => prod.id === id);
+        products[editedProductIndex] = editedProduct;
+        setProducts(products)
+    }
+    clearForm();
+    setEdit(false);
+    }
+
+    const deleteProduct = async(id) => {
+        const res = await fetch(url + `url + ${id}`, {
+            method: "DELETE",
+            headers: {
+                "content-type": "application/json"
+            },
+        })
+        
+        const deletedProduct = await res.json();
+        setProducts(products.filter(prod => prod.id !== deletedProduct.id))
+    }
+
+    const handleName = (e) => {setName(e.target.value)};
+    const handlePrice = (e) => {setPrice(e.target.value)};
+    const handleStock = (e) => {setStock(e.target.value)};
+    
+    
     return(
         <>
         {products.length > 0 ? <TableComponent onEdit={handleEdit} onDelete={handleDelete} products={products} /> : <h2>Sem produtos cadastrados...</h2>}
